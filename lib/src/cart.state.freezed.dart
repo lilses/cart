@@ -16,20 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CartState {
-  List<IProduct> get products => throw _privateConstructorUsedError;
+  List<ProductEnum> get products => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<IProduct> products) some,
+    required TResult Function(List<ProductEnum> products) some,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<IProduct> products)? some,
+    TResult? Function(List<ProductEnum> products)? some,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<IProduct> products)? some,
+    TResult Function(List<ProductEnum> products)? some,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,7 +60,7 @@ abstract class $CartStateCopyWith<$Res> {
   factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
       _$CartStateCopyWithImpl<$Res, CartState>;
   @useResult
-  $Res call({List<IProduct> products});
+  $Res call({List<ProductEnum> products});
 }
 
 /// @nodoc
@@ -82,7 +82,7 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<IProduct>,
+              as List<ProductEnum>,
     ) as $Val);
   }
 }
@@ -93,7 +93,7 @@ abstract class _$$_SomeCopyWith<$Res> implements $CartStateCopyWith<$Res> {
       __$$_SomeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<IProduct> products});
+  $Res call({List<ProductEnum> products});
 }
 
 /// @nodoc
@@ -111,7 +111,7 @@ class __$$_SomeCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res, _$_Some>
       null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<IProduct>,
+              as List<ProductEnum>,
     ));
   }
 }
@@ -119,11 +119,11 @@ class __$$_SomeCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res, _$_Some>
 /// @nodoc
 
 class _$_Some with DiagnosticableTreeMixin implements _Some {
-  const _$_Some(final List<IProduct> products) : _products = products;
+  const _$_Some(final List<ProductEnum> products) : _products = products;
 
-  final List<IProduct> _products;
+  final List<ProductEnum> _products;
   @override
-  List<IProduct> get products {
+  List<ProductEnum> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_products);
@@ -163,7 +163,7 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<IProduct> products) some,
+    required TResult Function(List<ProductEnum> products) some,
   }) {
     return some(products);
   }
@@ -171,7 +171,7 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<IProduct> products)? some,
+    TResult? Function(List<ProductEnum> products)? some,
   }) {
     return some?.call(products);
   }
@@ -179,7 +179,7 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<IProduct> products)? some,
+    TResult Function(List<ProductEnum> products)? some,
     required TResult orElse(),
   }) {
     if (some != null) {
@@ -218,10 +218,10 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
 }
 
 abstract class _Some implements CartState {
-  const factory _Some(final List<IProduct> products) = _$_Some;
+  const factory _Some(final List<ProductEnum> products) = _$_Some;
 
   @override
-  List<IProduct> get products;
+  List<ProductEnum> get products;
   @override
   @JsonKey(ignore: true)
   _$$_SomeCopyWith<_$_Some> get copyWith => throw _privateConstructorUsedError;

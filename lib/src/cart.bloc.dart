@@ -33,7 +33,7 @@ class CartBloc extends Cubit<CartState> {
     );
   }
 
-  List<IProduct> get cart => state.products;
+  List<ProductEnum> get cart => state.products;
 
 
   double getPrice(){

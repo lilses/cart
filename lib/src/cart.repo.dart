@@ -8,9 +8,9 @@ class CartRepo {
 
   final controller = StreamController<CartState>.broadcast();
   Stream<CartState> get items => controller.stream.asBroadcastStream();
-  List<IProduct> list = [];
+  List<ProductEnum> list = [];
 
-  addToCart(IProduct product) {
+  addToCart(ProductEnum product) {
     final newList = list.toList();
     newList.add(product);
     list = newList;

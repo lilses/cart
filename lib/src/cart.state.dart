@@ -6,5 +6,5 @@ part 'cart.state.freezed.dart';
 
 @freezed
 class CartState with _$CartState {
-  const factory CartState.some(List<IProduct> products) = _Some;
+  const factory CartState.some(List<ProductEnum> products) = _Some;
 }
