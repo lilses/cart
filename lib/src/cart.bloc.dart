@@ -29,7 +29,8 @@ class CartBloc extends Cubit<CartState> {
   void subscribe() {
     cartRepoSubscription = cartRepo.items.listen(
           (event){
-        emit(CartState.some(event.products,event.listItems));
+        final listItems = event.products.map((e) => e.toListItemsForCart()).toList();
+        emit(CartState.some(event.products,listItems));
       },
       onError: (error) => print("STREAM ERROR: $error"),
     );

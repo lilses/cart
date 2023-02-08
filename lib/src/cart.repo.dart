@@ -14,8 +14,7 @@ class CartRepo {
     final newList = list.toList();
     newList.add(product);
     list = newList;
-    final listItems = list.map((e) => e.toListItems()).toList();
-    controller.sink.add(CartState.some(list,listItems));
+    controller.sink.add(CartState.some(list,[]));
   }
 
   reset(){
