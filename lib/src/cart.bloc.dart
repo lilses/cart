@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:list_component/list_component.dart';
 import 'package:product/product.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,9 +15,10 @@ class CartBloc extends Cubit<CartState> {
 
   CartBloc({
     required this.cartRepo
-  }) : super(const CartState.some([])){
+  }) : super(const CartState.some([],[])){
     subscribe();
   }
+
 
   @override
   Future<void> close() {
@@ -26,11 +28,18 @@ class CartBloc extends Cubit<CartState> {
 
   void subscribe() {
     cartRepoSubscription = cartRepo.items.listen(
-          (items){
-        emit(CartState.some(items.products));
+          (event){
+        emit(CartState.some(event.products,event.listItems));
       },
       onError: (error) => print("STREAM ERROR: $error"),
     );
+  }
+
+  void retrigger(){
+    final a = state.products;
+    final b = state.listItems;
+    emit(const CartState.some([],[]));
+    emit(CartState.some(a,b));
   }
 
   List<ProductEnum> get cart => state.products;

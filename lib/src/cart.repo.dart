@@ -14,11 +14,12 @@ class CartRepo {
     final newList = list.toList();
     newList.add(product);
     list = newList;
-    controller.sink.add(CartState.some(list));
+    final listItems = list.map((e) => e.toListItems()).toList();
+    controller.sink.add(CartState.some(list,listItems));
   }
 
   reset(){
-    controller.sink.add(const CartState.some([]));
+    controller.sink.add(const CartState.some([],[]));
   }
 
   double getPrice(){

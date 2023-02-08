@@ -8,6 +8,8 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  list_component:
+    path: ../list_component
   api:
     path: ../api
   auth_id:

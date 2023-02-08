@@ -17,19 +17,24 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CartState {
   List<ProductEnum> get products => throw _privateConstructorUsedError;
+  List<ListItem> get listItems => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<ProductEnum> products) some,
+    required TResult Function(
+            List<ProductEnum> products, List<ListItem> listItems)
+        some,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ProductEnum> products)? some,
+    TResult? Function(List<ProductEnum> products, List<ListItem> listItems)?
+        some,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ProductEnum> products)? some,
+    TResult Function(List<ProductEnum> products, List<ListItem> listItems)?
+        some,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -60,7 +65,7 @@ abstract class $CartStateCopyWith<$Res> {
   factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
       _$CartStateCopyWithImpl<$Res, CartState>;
   @useResult
-  $Res call({List<ProductEnum> products});
+  $Res call({List<ProductEnum> products, List<ListItem> listItems});
 }
 
 /// @nodoc
@@ -77,12 +82,17 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
   @override
   $Res call({
     Object? products = null,
+    Object? listItems = null,
   }) {
     return _then(_value.copyWith(
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
               as List<ProductEnum>,
+      listItems: null == listItems
+          ? _value.listItems
+          : listItems // ignore: cast_nullable_to_non_nullable
+              as List<ListItem>,
     ) as $Val);
   }
 }
@@ -93,7 +103,7 @@ abstract class _$$_SomeCopyWith<$Res> implements $CartStateCopyWith<$Res> {
       __$$_SomeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ProductEnum> products});
+  $Res call({List<ProductEnum> products, List<ListItem> listItems});
 }
 
 /// @nodoc
@@ -106,12 +116,17 @@ class __$$_SomeCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res, _$_Some>
   @override
   $Res call({
     Object? products = null,
+    Object? listItems = null,
   }) {
     return _then(_$_Some(
       null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
               as List<ProductEnum>,
+      null == listItems
+          ? _value._listItems
+          : listItems // ignore: cast_nullable_to_non_nullable
+              as List<ListItem>,
     ));
   }
 }
@@ -119,7 +134,10 @@ class __$$_SomeCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res, _$_Some>
 /// @nodoc
 
 class _$_Some with DiagnosticableTreeMixin implements _Some {
-  const _$_Some(final List<ProductEnum> products) : _products = products;
+  const _$_Some(
+      final List<ProductEnum> products, final List<ListItem> listItems)
+      : _products = products,
+        _listItems = listItems;
 
   final List<ProductEnum> _products;
   @override
@@ -129,9 +147,17 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
     return EqualUnmodifiableListView(_products);
   }
 
+  final List<ListItem> _listItems;
+  @override
+  List<ListItem> get listItems {
+    if (_listItems is EqualUnmodifiableListView) return _listItems;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listItems);
+  }
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CartState.some(products: $products)';
+    return 'CartState.some(products: $products, listItems: $listItems)';
   }
 
   @override
@@ -139,7 +165,8 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'CartState.some'))
-      ..add(DiagnosticsProperty('products', products));
+      ..add(DiagnosticsProperty('products', products))
+      ..add(DiagnosticsProperty('listItems', listItems));
   }
 
   @override
@@ -147,12 +174,16 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Some &&
-            const DeepCollectionEquality().equals(other._products, _products));
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            const DeepCollectionEquality()
+                .equals(other._listItems, _listItems));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_products));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_products),
+      const DeepCollectionEquality().hash(_listItems));
 
   @JsonKey(ignore: true)
   @override
@@ -163,27 +194,31 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(List<ProductEnum> products) some,
+    required TResult Function(
+            List<ProductEnum> products, List<ListItem> listItems)
+        some,
   }) {
-    return some(products);
+    return some(products, listItems);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ProductEnum> products)? some,
+    TResult? Function(List<ProductEnum> products, List<ListItem> listItems)?
+        some,
   }) {
-    return some?.call(products);
+    return some?.call(products, listItems);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ProductEnum> products)? some,
+    TResult Function(List<ProductEnum> products, List<ListItem> listItems)?
+        some,
     required TResult orElse(),
   }) {
     if (some != null) {
-      return some(products);
+      return some(products, listItems);
     }
     return orElse();
   }
@@ -218,10 +253,14 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
 }
 
 abstract class _Some implements CartState {
-  const factory _Some(final List<ProductEnum> products) = _$_Some;
+  const factory _Some(
+          final List<ProductEnum> products, final List<ListItem> listItems) =
+      _$_Some;
 
   @override
   List<ProductEnum> get products;
+  @override
+  List<ListItem> get listItems;
   @override
   @JsonKey(ignore: true)
   _$$_SomeCopyWith<_$_Some> get copyWith => throw _privateConstructorUsedError;
