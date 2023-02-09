@@ -10,11 +10,16 @@ class CartRepo {
   Stream<CartState> get items => controller.stream.asBroadcastStream();
   List<ProductEnum> list = [];
 
+  // todo! determine currency symbol from product
   addToCart(ProductEnum product) {
     final newList = list.toList();
     newList.add(product);
     list = newList;
-    controller.sink.add(CartState.some(list,[]));
+    final listItems = list.map((e) => e.toListItemsForCart(
+        '£${list.totalPrice().toStringAsFixed(2)}'
+    ))
+        .toList();
+    controller.sink.add(CartState.some(list,listItems));
   }
 
   reset(){
