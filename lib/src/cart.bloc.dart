@@ -4,6 +4,8 @@ import 'package:list_component/list_component.dart';
 import 'package:product/product.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stripe/stripe.dart';
+import 'package:transferwise/transferwise.dart';
 
 import 'cart.repo.dart';
 import 'cart.state.dart';
@@ -12,9 +14,13 @@ class CartBloc extends Cubit<CartState> {
   final CartRepo cartRepo;
 
   late final StreamSubscription cartRepoSubscription;
+  final StripeRepo stripeRepo;
+  final TransferwiseRepo transferwiseRepo;
 
   CartBloc({
-    required this.cartRepo
+    required this.cartRepo,
+    required this.stripeRepo,
+    required this.transferwiseRepo,
   }) : super(const CartState.some([],[])){
     subscribe();
   }
@@ -52,5 +58,14 @@ class CartBloc extends Cubit<CartState> {
   double getPricePlusPercent(double d){
     final price =  state.products.fold(0.0, (a, b) => a+b.priceDouble());
     return price+(price*d);
+  }
+
+  List<ListItem> paymentListItems(){
+    final List<ListItem> list = [];
+    final stripeListItem = stripeRepo.toListItem();
+    final transferwiseListItem = transferwiseRepo.toListItem();
+    list.add(stripeListItem);
+    list.add(transferwiseListItem);
+    return list;
   }
 }

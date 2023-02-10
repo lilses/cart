@@ -8,6 +8,10 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  transferwise:
+    path: ../transferwise
+  stripe:
+    path: ../stripe
   router:
     path: ../router
   list_component:
