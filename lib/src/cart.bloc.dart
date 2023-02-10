@@ -51,21 +51,26 @@ class CartBloc extends Cubit<CartState> {
   List<ProductEnum> get cart => state.products;
 
 
-  double getPrice(){
-    return state.products.fold(0.0, (a, b) => a+b.priceDouble());
-  }
-
-  double getPricePlusPercent(double d){
-    final price =  state.products.fold(0.0, (a, b) => a+b.priceDouble());
-    return price+(price*d);
-  }
-
-  List<ListItem> paymentListItems(){
-    final List<ListItem> list = [];
+  addToCart(ProductEnum product) {
+    final productList = state.products.toList();
+    productList.add(product);
+    final listItems = productList.map((e) => e.toListItemsForCart(
+        '£${productList.totalPrice().toStringAsFixed(2)}'
+    ))
+    .toList();
     final stripeListItem = stripeRepo.toListItem();
     final transferwiseListItem = transferwiseRepo.toListItem();
-    list.add(stripeListItem);
-    list.add(transferwiseListItem);
-    return list;
+    listItems.add(stripeListItem);
+    listItems.add(transferwiseListItem);
+    cartRepo.addToCart(productList, listItems);
   }
+
+  // List<ListItem> paymentListItems(){
+  //   final List<ListItem> list = [];
+  //   final stripeListItem = stripeRepo.toListItem();
+  //   final transferwiseListItem = transferwiseRepo.toListItem();
+  //   list.add(stripeListItem);
+  //   list.add(transferwiseListItem);
+  //   return list;
+  // }
 }
