@@ -14,6 +14,8 @@ import 'cart.state.dart';
 class CartBloc extends Cubit<CartState> {
   final CartRepo cartRepo;
   final StripeRepo stripeRepo;
+  final AddressRepo stripeRepo;
+
   final TransferwiseRepo transferwiseRepo;
   final RouterRepo routerRepo;
   RouterState? _routerState;
