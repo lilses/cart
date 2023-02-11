@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:address/address.dart';
 import 'package:list_component/list_component.dart';
 import 'package:nav/nav.dart';
 import 'package:product/product.dart';
@@ -14,7 +15,7 @@ import 'cart.state.dart';
 class CartBloc extends Cubit<CartState> {
   final CartRepo cartRepo;
   final StripeRepo stripeRepo;
-  final AddressRepo stripeRepo;
+  final AddressRepo addressRepo;
 
   final TransferwiseRepo transferwiseRepo;
   final RouterRepo routerRepo;
@@ -22,13 +23,16 @@ class CartBloc extends Cubit<CartState> {
 
   late final StreamSubscription cartRepoSubscription;
   late final StreamSubscription routerRepoSubscription;
+  late final StreamSubscription addressRepoSubscription;
+
 
   CartBloc({
+    required this.addressRepo,
     required this.cartRepo,
     required this.stripeRepo,
     required this.transferwiseRepo,
     required this.routerRepo,
-  }) : super(const CartState.some([], [])) {
+  }) : super(const CartState.some([], [], null)) {
     subscribe();
   }
 
@@ -39,9 +43,15 @@ class CartBloc extends Cubit<CartState> {
   }
 
   void subscribe() {
+    addressRepoSubscription = addressRepo.items.listen(
+          (event) {
+        emit(CartState.some(state.products, state.listItems, event.deliveryAddress));
+      },
+      onError: (error) => print("STREAM ERROR: $error"),
+    );
     cartRepoSubscription = cartRepo.items.listen(
       (event) {
-        emit(CartState.some(event.products, event.listItems));
+        emit(CartState.some(event.products, event.listItems, state.deliveryAddress));
       },
       onError: (error) => print("STREAM ERROR: $error"),
     );
@@ -56,8 +66,9 @@ class CartBloc extends Cubit<CartState> {
   void retrigger() {
     final a = state.products;
     final b = state.listItems;
-    emit(const CartState.some([], []));
-    emit(CartState.some(a, b));
+    final c = state.deliveryAddress;
+    emit(const CartState.some([], [], null));
+    emit(CartState.some(a, b, c));
   }
 
   List<ProductEnum> get cart => state.products;
@@ -73,10 +84,11 @@ class CartBloc extends Cubit<CartState> {
     final transferwiseListItem = transferwiseRepo.toListItem();
     listItems.add(stripeListItem);
     listItems.add(transferwiseListItem);
-    cartRepo.addToCart(productList, listItems);
+    cartRepo.addToCart(productList, listItems, state.deliveryAddress);
   }
 
   navigateToStripe() {
+    // final n = state.deliveryAddress == null ? NavEnum.
     if (_routerState != null) {
       _routerState!.mapOrNull(
           some: (some) => routerRepo.changeRoute(RouterState.some(

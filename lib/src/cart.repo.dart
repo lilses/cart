@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:address/address.dart';
 import 'package:list_component/list_component.dart';
 import 'package:product/product.dart';
 
@@ -12,8 +13,8 @@ class CartRepo {
   List<ProductEnum> list = [];
 
   // todo! determine currency symbol from product
-  addToCart(List<ProductEnum> products, List<ListItem> listItems) {
-    controller.sink.add(CartState.some(products,listItems));
+  addToCart(List<ProductEnum> products, List<ListItem> listItems, QAddress? address) {
+    controller.sink.add(CartState.some(products,listItems,address));
   }
 
 

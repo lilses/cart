@@ -18,22 +18,25 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CartState {
   List<ProductEnum> get products => throw _privateConstructorUsedError;
   List<ListItem> get listItems => throw _privateConstructorUsedError;
+  QAddress? get deliveryAddress => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<ProductEnum> products, List<ListItem> listItems)
+    required TResult Function(List<ProductEnum> products,
+            List<ListItem> listItems, QAddress? deliveryAddress)
         some,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ProductEnum> products, List<ListItem> listItems)?
+    TResult? Function(List<ProductEnum> products, List<ListItem> listItems,
+            QAddress? deliveryAddress)?
         some,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ProductEnum> products, List<ListItem> listItems)?
+    TResult Function(List<ProductEnum> products, List<ListItem> listItems,
+            QAddress? deliveryAddress)?
         some,
     required TResult orElse(),
   }) =>
@@ -65,7 +68,10 @@ abstract class $CartStateCopyWith<$Res> {
   factory $CartStateCopyWith(CartState value, $Res Function(CartState) then) =
       _$CartStateCopyWithImpl<$Res, CartState>;
   @useResult
-  $Res call({List<ProductEnum> products, List<ListItem> listItems});
+  $Res call(
+      {List<ProductEnum> products,
+      List<ListItem> listItems,
+      QAddress? deliveryAddress});
 }
 
 /// @nodoc
@@ -83,6 +89,7 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
   $Res call({
     Object? products = null,
     Object? listItems = null,
+    Object? deliveryAddress = freezed,
   }) {
     return _then(_value.copyWith(
       products: null == products
@@ -93,6 +100,10 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
           ? _value.listItems
           : listItems // ignore: cast_nullable_to_non_nullable
               as List<ListItem>,
+      deliveryAddress: freezed == deliveryAddress
+          ? _value.deliveryAddress
+          : deliveryAddress // ignore: cast_nullable_to_non_nullable
+              as QAddress?,
     ) as $Val);
   }
 }
@@ -103,7 +114,10 @@ abstract class _$$_SomeCopyWith<$Res> implements $CartStateCopyWith<$Res> {
       __$$_SomeCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<ProductEnum> products, List<ListItem> listItems});
+  $Res call(
+      {List<ProductEnum> products,
+      List<ListItem> listItems,
+      QAddress? deliveryAddress});
 }
 
 /// @nodoc
@@ -117,6 +131,7 @@ class __$$_SomeCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res, _$_Some>
   $Res call({
     Object? products = null,
     Object? listItems = null,
+    Object? deliveryAddress = freezed,
   }) {
     return _then(_$_Some(
       null == products
@@ -127,6 +142,10 @@ class __$$_SomeCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res, _$_Some>
           ? _value._listItems
           : listItems // ignore: cast_nullable_to_non_nullable
               as List<ListItem>,
+      freezed == deliveryAddress
+          ? _value.deliveryAddress
+          : deliveryAddress // ignore: cast_nullable_to_non_nullable
+              as QAddress?,
     ));
   }
 }
@@ -134,8 +153,8 @@ class __$$_SomeCopyWithImpl<$Res> extends _$CartStateCopyWithImpl<$Res, _$_Some>
 /// @nodoc
 
 class _$_Some with DiagnosticableTreeMixin implements _Some {
-  const _$_Some(
-      final List<ProductEnum> products, final List<ListItem> listItems)
+  const _$_Some(final List<ProductEnum> products,
+      final List<ListItem> listItems, this.deliveryAddress)
       : _products = products,
         _listItems = listItems;
 
@@ -156,8 +175,11 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
   }
 
   @override
+  final QAddress? deliveryAddress;
+
+  @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'CartState.some(products: $products, listItems: $listItems)';
+    return 'CartState.some(products: $products, listItems: $listItems, deliveryAddress: $deliveryAddress)';
   }
 
   @override
@@ -166,7 +188,8 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
     properties
       ..add(DiagnosticsProperty('type', 'CartState.some'))
       ..add(DiagnosticsProperty('products', products))
-      ..add(DiagnosticsProperty('listItems', listItems));
+      ..add(DiagnosticsProperty('listItems', listItems))
+      ..add(DiagnosticsProperty('deliveryAddress', deliveryAddress));
   }
 
   @override
@@ -176,14 +199,17 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
             other is _$_Some &&
             const DeepCollectionEquality().equals(other._products, _products) &&
             const DeepCollectionEquality()
-                .equals(other._listItems, _listItems));
+                .equals(other._listItems, _listItems) &&
+            (identical(other.deliveryAddress, deliveryAddress) ||
+                other.deliveryAddress == deliveryAddress));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_products),
-      const DeepCollectionEquality().hash(_listItems));
+      const DeepCollectionEquality().hash(_listItems),
+      deliveryAddress);
 
   @JsonKey(ignore: true)
   @override
@@ -194,31 +220,33 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(
-            List<ProductEnum> products, List<ListItem> listItems)
+    required TResult Function(List<ProductEnum> products,
+            List<ListItem> listItems, QAddress? deliveryAddress)
         some,
   }) {
-    return some(products, listItems);
+    return some(products, listItems, deliveryAddress);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(List<ProductEnum> products, List<ListItem> listItems)?
+    TResult? Function(List<ProductEnum> products, List<ListItem> listItems,
+            QAddress? deliveryAddress)?
         some,
   }) {
-    return some?.call(products, listItems);
+    return some?.call(products, listItems, deliveryAddress);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(List<ProductEnum> products, List<ListItem> listItems)?
+    TResult Function(List<ProductEnum> products, List<ListItem> listItems,
+            QAddress? deliveryAddress)?
         some,
     required TResult orElse(),
   }) {
     if (some != null) {
-      return some(products, listItems);
+      return some(products, listItems, deliveryAddress);
     }
     return orElse();
   }
@@ -254,13 +282,16 @@ class _$_Some with DiagnosticableTreeMixin implements _Some {
 
 abstract class _Some implements CartState {
   const factory _Some(
-          final List<ProductEnum> products, final List<ListItem> listItems) =
-      _$_Some;
+      final List<ProductEnum> products,
+      final List<ListItem> listItems,
+      final QAddress? deliveryAddress) = _$_Some;
 
   @override
   List<ProductEnum> get products;
   @override
   List<ListItem> get listItems;
+  @override
+  QAddress? get deliveryAddress;
   @override
   @JsonKey(ignore: true)
   _$$_SomeCopyWith<_$_Some> get copyWith => throw _privateConstructorUsedError;
