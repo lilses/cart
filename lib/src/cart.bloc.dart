@@ -88,14 +88,14 @@ class CartBloc extends Cubit<CartState> {
   }
 
   navigateToStripe() {
-    // final n = state.deliveryAddress == null ? NavEnum.
+    final navEnum = state.deliveryAddress == null ? NavEnum.address : NavEnum.stripe;
     if (_routerState != null) {
       _routerState!.mapOrNull(
           some: (some) => routerRepo.changeRoute(RouterState.some(
-              some.uri.replace(
-                path: NavEnum.stripe.path.replaceAll("/", ""),
+              uri:some.uri.replace(
+                path: navEnum.path.replaceAll("/", ""),
               ),
-              NavEnum.stripe)));
+              navEnum: navEnum, previousNavEnum: _routerState?.navEnum)));
     }
   }
 
