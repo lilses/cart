@@ -14,8 +14,6 @@ dependencies:
     path: ../nav
   transferwise:
     path: ../transferwise
-  stripe:
-    path: ../stripe
   router:
     path: ../router
   list_component:

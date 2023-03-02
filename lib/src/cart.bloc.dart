@@ -6,7 +6,6 @@ import 'package:nav/nav.dart';
 import 'package:product/product.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stripe/stripe.dart';
 import 'package:transferwise/transferwise.dart';
 import 'package:router/router.dart';
 import 'cart.repo.dart';
@@ -14,7 +13,6 @@ import 'cart.state.dart';
 
 class CartBloc extends Cubit<CartState> {
   final CartRepo cartRepo;
-  final StripeRepo stripeRepo;
   final AddressRepo addressRepo;
 
   final TransferwiseRepo transferwiseRepo;
@@ -29,7 +27,6 @@ class CartBloc extends Cubit<CartState> {
   CartBloc({
     required this.addressRepo,
     required this.cartRepo,
-    required this.stripeRepo,
     required this.transferwiseRepo,
     required this.routerRepo,
   }) : super(const CartState.some([], [], null)) {
@@ -80,9 +77,7 @@ class CartBloc extends Cubit<CartState> {
         .map((e) => e.toListItemsForCart(
             '£${productList.totalPrice().toStringAsFixed(2)}'))
         .toList();
-    final stripeListItem = stripeRepo.toListItem();
     final transferwiseListItem = transferwiseRepo.toListItem();
-    listItems.add(stripeListItem);
     listItems.add(transferwiseListItem);
     cartRepo.addToCart(productList, listItems, state.deliveryAddress);
   }
